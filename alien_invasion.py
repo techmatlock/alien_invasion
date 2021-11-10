@@ -86,7 +86,7 @@ class AlienInvasion:
 
         # Look for alien-ship collisions.
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
-            print("Ship hit!!!")
+            self._ship_hit()
   
     def _check_events(self):
         """Respond to keypress and mouse events."""
