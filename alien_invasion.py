@@ -32,6 +32,27 @@ class AlienInvasion:
         # Make the Play button.
         self.play_button = Button(self, "Play")
 
+        self._make_difficulty_buttons()
+
+    def _make_difficulty_buttons(self):
+        """Make buttons that allow player to select difficulty level."""
+        self.easy_button = Button(self, "Easy")
+        self.medium_button = Button(self, "Medium")
+        self.difficult_button = Button(self, "Difficult")
+
+        # Position buttons so they don't overlap.
+        self.easy_button.rect.top = (
+            self.play_button.rect.top + 1.5*self.play_button.rect.height)
+        self.easy_button._update_msg_position()
+
+        self.medium_button.rect.top = (
+            self.play_button.rect.top + 1.5*self.easy_button.rect.height)
+        self.medium_button._update_msg_position()
+
+        self.difficult_button.rect.top = (
+            self.play_button.rect.top + 1.5*self.medium_button.rect.height)
+        self.difficult_button._update_msg_position()
+
     def run_game(self):
         """Start the main loop for the game."""
         while True:
@@ -121,41 +142,31 @@ class AlienInvasion:
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 self._check_play_button(mouse_pos)
+                self._make_difficulty_buttons(mouse_pos)
 
     def _check_play_button(self, mouse_pos):
         """Start a new game when the player clicks Play."""
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.stats.game_active:
-            # Reset the game settings.
-            self.settings.initialize_dynamic_settings()
-
-            # Reset the game statistics.
-            self.stats.reset_stats()
-            self.stats.game_active = True
-
-            # Hide the mouse cursor.
-            pygame.mouse.set_visible(False)
-
-            # Get rid of any remaining aliens and bullets.
-            self.aliens.empty()
-            self.bullets.empty()
-
-            # Create a new fleet and center the ship.
-            self._create_fleet()
-            self.ship.center_ship()
-
+            self._start_game()
+            
     def _start_game(self):
-        """Start a new game when the player types "p" on the keyboard."""
+        """Start a new game."""
+        # Reset the game settings.
         self.settings.initialize_dynamic_settings()
 
+        # Reset the game statistics.
         self.stats.reset_stats()
         self.stats.game_active = True
 
+        # Hide the mouse cursor.
         pygame.mouse.set_visible(False)
 
+        # Get rid of any remaining aliens and bullets.
         self.aliens.empty()
         self.bullets.empty()
-        
+
+        # Create a new fleet and center the ship.
         self._create_fleet()
         self.ship.center_ship()
 
