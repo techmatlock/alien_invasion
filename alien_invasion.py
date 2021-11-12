@@ -42,17 +42,17 @@ class AlienInvasion:
         self.medium_button = Button(self, "Medium")
         self.difficult_button = Button(self, "Difficult")
 
-        # Position buttons so they don't overlap.
+        # Position buttons so they don't all overlap.
         self.easy_button.rect.top = (
             self.play_button.rect.top + 1.5*self.play_button.rect.height)
         self.easy_button._update_msg_position()
 
         self.medium_button.rect.top = (
-            self.play_button.rect.top + 1.5*self.easy_button.rect.height)
+            self.easy_button.rect.top + 1.5*self.easy_button.rect.height)
         self.medium_button._update_msg_position()
 
         self.difficult_button.rect.top = (
-            self.play_button.rect.top + 1.5*self.medium_button.rect.height)
+            self.medium_button.rect.top + 1.5*self.medium_button.rect.height)
         self.difficult_button._update_msg_position()
 
     def run_game(self):
