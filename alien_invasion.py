@@ -32,6 +32,7 @@ class AlienInvasion:
         # Make the Play button.
         self.play_button = Button(self, "Play")
 
+        # Make difficult level buttons.
         self._make_difficulty_buttons()
 
     def _make_difficulty_buttons(self):
@@ -263,7 +264,10 @@ class AlienInvasion:
         # Draw the play button if the game is inactive.
         if not self.stats.game_active:
             self.play_button.draw_button()
-
+            self.easy_button.draw_button()
+            self.medium_button.draw_button()
+            self.difficult_button.draw_button()
+            
         pygame.display.flip()
 
 if __name__ == '__main__':
