@@ -139,7 +139,20 @@ class AlienInvasion:
             # Create a new fleet and center the ship.
             self._create_fleet()
             self.ship.center_ship()
-    
+
+    def _start_game(self):
+        """Start a new game when the player types "p" on the keyboard."""
+        self.stats.reset_stats()
+        self.stats.game_active = True
+
+        pygame.mouse.set_visible(False)
+
+        self.aliens.empty()
+        self.bullets.empty()
+        
+        self._create_fleet()
+        self.ship.center_ship()
+
     def _check_keydown_events(self, event):
         """Respond to key presses."""
         if event.key == pygame.K_RIGHT:
@@ -150,6 +163,8 @@ class AlienInvasion:
             sys.exit()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
+        elif event.key == pygame.K_p:
+            self._start_game()
 
     def _check_keyup_events(self, event):
         """Respond to key releases."""
