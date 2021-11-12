@@ -1,6 +1,7 @@
 import sys
-import pygame
 from time import sleep
+
+import pygame
 
 from settings import Settings
 from game_stats import GameStats
