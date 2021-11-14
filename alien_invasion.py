@@ -67,6 +67,8 @@ class AlienInvasion:
                 self.ship.update()
                 self._update_bullets()
                 self._update_aliens()
+                with open("highscore.txt", "w") as f:
+                    f.write(str(self.stats.score))
 
             self._update_screen()
       
