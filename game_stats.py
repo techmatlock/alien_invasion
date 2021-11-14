@@ -7,7 +7,9 @@ class GameStats:
         self.reset_stats()
 
         # High score should never be reset.
-        self.high_score = 0
+        with open("highscore.txt", "r") as f:
+            score = f.read()
+        self.high_score = int(float(score))
         self.level = 1
 
         # Start game in an inactive state.
