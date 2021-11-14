@@ -6,7 +6,7 @@ class GameStats:
         self.settings = ai_game.settings
         self.reset_stats()
 
-        # High score should never be reset.
+        # Read high score and update high_score attribute.
         with open("highscore.txt", "r") as f:
             score = f.read()
         self.high_score = int(float(score))
