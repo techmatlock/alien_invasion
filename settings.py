@@ -72,3 +72,8 @@ class Settings:
             pass
         elif diff_setting == 'difficult':
             pass
+
+    def start_bonus(self):
+        """Initialize bonus round settings."""
+        self.bullet_width = 150
+        self.bg_color = (51, 255, 255)
