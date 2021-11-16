@@ -174,9 +174,6 @@ class AlienInvasion:
         if collisions:
             for aliens in collisions.values():
                 self.stats.score += self.settings.alien_points * len(aliens)
-            # Add bonus mode if 300 points is achieved.
-            # if self.stats.score > 300:
-                # self.settings.start_bonus()
             self.sb.prep_score()
             self.sb.check_high_score()
         
